@@ -26,7 +26,6 @@
             min-height: 250vh; 
         }
 
-        /* Defter Mekaniği */
         .notebook-wrapper {
             position: fixed;
             top: 50%;
@@ -127,33 +126,38 @@
 
         .btn-store:hover { transform: translateY(-5px); background: #222; }
 
-        /* İletişim Bölümü */
+        /* Gelişmiş İletişim Bölümü */
         .contact-section {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .social-link {
             color: #d4af37;
-            font-size: 1.8rem;
-            margin: 0 15px;
+            font-size: 1.6rem;
+            margin: 0 12px;
             transition: 0.3s;
             display: inline-block;
         }
 
         .social-link:hover {
-            color: #f3cf65;
-            transform: scale(1.2);
+            color: #ffffff;
+            transform: translateY(-5px);
         }
 
-        .mail-text {
-            color: #aaa;
-            font-family: 'Courier New', Courier, monospace;
+        .mail-link {
+            color: #d4af37;
+            text-decoration: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
             display: block;
             margin-top: 15px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            transition: 0.3s;
         }
+
+        .mail-link:hover { color: #fff; }
     </style>
 </head>
 <body>
@@ -203,12 +207,14 @@
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-8 text-gray-400 underline cursor-pointer">Yeniden Oku</button>
 
         <div class="contact-section">
-            <div class="flex justify-center">
-                <a href="https://instagram.com/burhancengizbc" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/burhancengizbc" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/burhancengizbc" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <div class="flex justify-center flex-wrap gap-2">
+                <a href="mailto:cengizburhanbc@gmail.com" title="Mail At" class="social-link"><i class="fas fa-envelope"></i></a>
+                <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/burhancengizbc" target="_blank" title="X (Twitter)" class="social-link"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <a href="mailto:safak.cengiz@hotmail.com" class="mail-text">safak.cengiz@hotmail.com</a>
+            <a href="https://burhancengiz.com" target="_blank" class="mail-link">burhancengiz.com</a>
         </div>
     </div>
 
