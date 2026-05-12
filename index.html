@@ -3,242 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Defterim | Zamanın Ötesinde</title>
+    <title>Plan Defterim | Hayatını Yaz</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&family=Dancing+Script:wght@700&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-blue: #00d2ff;
-            --neon-purple: #9d50bb;
             --paper: #fdfbf7;
+            --cover: #4a2c2a; /* Deri kahve */
+            --spine: #3a2220;
         }
 
         body {
-            background: #05070a;
-            color: white;
-            font-family: 'Poppins', sans-serif;
+            background: #1a1a1a;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png'); /* Ahşap Masa Dokusu */
+            font-family: 'EB Garamond', serif;
+            margin: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Fütüristik Arka Plan */
-        .cyber-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #05070a 100%);
-        }
-
-        .floating-orb {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            filter: blur(100px);
-            opacity: 0.3;
-            border-radius: 50%;
-            animation: float 15s infinite alternate;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 100px) scale(1.2); }
-        }
-
-        /* İnteraktif Defter Mekaniği */
-        .book-container {
-            perspective: 2000px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
+            align-items: center;
+            min-height: 200vh; /* Kaydırma alanı için */
         }
 
-        .book {
-            width: 100%;
-            max-width: 1000px;
-            height: 700px;
+        /* Defter Mekaniği */
+        .notebook-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            perspective: 2000px;
+            z-index: 10;
+        }
+
+        .notebook {
+            width: 450px;
+            height: 600px;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: transform 1s;
         }
 
         .page {
-            width: 50%;
+            width: 100%;
             height: 100%;
             position: absolute;
             top: 0;
-            right: 0;
+            left: 0;
             transform-origin: left;
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-            background: var(--paper);
-            box-shadow: inset 3px 0 10px rgba(0,0,0,0.1);
-            color: #333;
-            padding: 40px;
+            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
             backface-visibility: hidden;
-            border-radius: 0 15px 15px 0;
+            border-radius: 4px 15px 15px 4px;
         }
 
-        /* Klasik Defter Çizgileri */
-        .classic-lines {
-            background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
-            background-size: 100% 28px;
-            line-height: 28px;
-        }
-
-        .page.front {
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+        /* Kapak Tasarımı */
+        .cover {
+            background: var(--cover);
+            z-index: 5;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            color: #d4af37; /* Altın sarısı yazı */
+            border: 2px solid #3d2422;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
         }
 
-        .page.flipped {
-            transform: rotateY(-180deg);
-        }
-
-        /* Spiral Yapısı */
-        .spirals {
-            position: absolute;
-            left: -15px;
-            top: 20px;
-            bottom: 20px;
-            width: 30px;
-            z-index: 100;
+        .cover-border {
+            border: 2px solid #d4af37;
+            margin: 20px;
+            padding: 40px;
+            height: 80%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
+            align-items: center;
         }
 
-        .ring {
-            width: 40px;
-            height: 12px;
-            background: linear-gradient(to right, #222, #555, #222);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        /* Sayfa Tasarımları */
+        .inner-page {
+            background: var(--paper);
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 100% 30px;
+            padding: 50px;
+            color: #2c1810;
+            z-index: 4;
+            box-shadow: inset 5px 0 15px rgba(0,0,0,0.1);
         }
 
         .handwriting {
             font-family: 'Dancing Script', cursive;
-            color: #2563eb;
-            font-size: 1.8rem;
+            color: #1a365d;
+            line-height: 30px;
+            font-size: 1.4rem;
         }
 
-        .futuristic-btn {
-            background: transparent;
-            border: 2px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s;
-        }
-
-        .futuristic-btn:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        /* Mouse Takip Efekti */
-        #glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0,210,255,0.15) 0%, transparent 70%);
-            border-radius: 50%;
+        /* Animasyon Sınıfları */
+        .flipped { transform: rotateY(-170deg); }
+        
+        .download-screen {
+            opacity: 0;
             pointer-events: none;
-            z-index: 9999;
+            transition: opacity 1s;
+            position: fixed;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20;
         }
+
+        .show-download { opacity: 1; pointer-events: auto; }
+
+        .btn-store {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .btn-store:hover { transform: translateY(-5px); background: #222; }
     </style>
 </head>
 <body>
 
-    <div id="glow"></div>
-    <div class="cyber-bg"></div>
-    <div class="floating-orb" style="top: 10%; left: 10%;"></div>
-    <div class="floating-orb" style="bottom: 10%; right: 10%; animation-delay: -5s;"></div>
-
-    <div class="book-container">
-        <div class="book" id="myBook">
+    <div class="notebook-wrapper">
+        <div class="notebook" id="notebook">
             
-            <div class="page front" id="cover">
-                <div class="spirals">
-                    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-                    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-                    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="page cover" style="transform: rotateY(0deg); z-index: 1;"></div>
+
+            <div class="page inner-page" id="page2">
+                <h2 class="text-3xl font-bold mb-6">Manifesto_</h2>
+                <div class="handwriting">
+                    <p class="mb-6">3. Hedeflerine Odaklan:<br>Gürültüyü sustur. Zihnindeki karmaşayı bir kenara bırak ve seni gerçekten heyecanlandıran o tek şeye odaklan. Başarı, dikkatin disiplinidir.</p>
+                    <p>4. Plan Defterim'i Kullan:<br>Bu sadece bir yazılım değil; senin sadık sırdaşın, kişisel asistanın ve başarı yolundaki pusulan. Kağıdın samimiyeti, dijitalin gücüyle buluştu.</p>
                 </div>
-                <h1 class="text-6xl font-extrabold mb-4 tracking-tighter" data-aos="fade-up">PLAN<br>DEFTERİM</h1>
-                <p class="text-indigo-400 font-mono tracking-widest mb-8">VERSION 2026.PRO</p>
-                <button onclick="flipBook()" class="futuristic-btn">Defteri Aç</button>
             </div>
 
-            <div class="page" id="insidePage" style="left: 0; transform-origin: right; border-radius: 15px 0 0 15px; background: #fff;">
-                <div class="classic-lines h-full">
-                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Bugünün Notları_</h2>
-                    <ul class="handwriting space-y-4">
-                        <li data-aos="fade-right">1. Geleceği planla...</li>
-                        <li data-aos="fade-right" data-aos-delay="100">2. Kaosu düzene sok.</li>
-                        <li data-aos="fade-right" data-aos-delay="200">3. Hedeflerine odaklan.</li>
-                        <li data-aos="fade-right" data-aos-delay="300">4. Plan Defterim'i kullan.</li>
-                    </ul>
-                    
-                    <div class="mt-20 p-6 border-2 border-dashed border-blue-200 rounded-lg">
-                        <p class="text-sm text-gray-500 font-mono uppercase">Sistem Durumu:</p>
-                        <p class="text-green-600 font-bold tracking-tighter">YARATICILIK AKTİF %100</p>
-                    </div>
+            <div class="page inner-page" id="page1">
+                <h2 class="text-3xl font-bold mb-6">İlk Adım_</h2>
+                <div class="handwriting">
+                    <p class="mb-6">1. Geleceği Planla:<br>Zaman akıp giderken dümende sen ol. Yarınını bugünden hayal et, adımlarını bugünden belirle. Unutma; planlanmamış bir gelecek, başkalarının rüyasıdır.</p>
+                    <p>2. Kaosu Düzene Sok:<br>Hayat karmaşıktır ama kontrol edilebilir. Dağınık düşünceleri satırlara dök, önceliklerini belirle. Düzenin olduğu yerde huzur, huzurun olduğu yerde verim vardır.</p>
+                </div>
+            </div>
+
+            <div class="page cover" id="front-cover">
+                <div class="cover-border">
+                    <h3 class="text-xl mb-4 italic">Kişisel Ajanda</h3>
+                    <h1 class="text-4xl font-bold tracking-widest text-center">PLAN DEFTERİM</h1>
+                    <p class="mt-10 text-sm opacity-70">MMLXXVI</p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div class="fixed bottom-10 left-0 w-full text-center text-xs tracking-widest text-gray-600 uppercase">
-        Kaydır veya tıkla • Plan Defterim Digital Experience
+    <div class="download-screen" id="download-screen">
+        <h2 class="text-white text-4xl font-bold mb-8">Defterini Cebine Al</h2>
+        <div class="flex flex-col md:flex-row justify-center items-center">
+            <a href="#" class="btn-store">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" class="w-32">
+            </a>
+            <a href="#" class="btn-store">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="w-32">
+            </a>
+        </div>
+        <button onclick="window.scrollTo(0,0)" class="mt-8 text-gray-400 underline">Tekrar Oku</button>
     </div>
 
     <script>
-        AOS.init();
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const notebook = document.getElementById('notebook');
+            const frontCover = document.getElementById('front-cover');
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            const downloadScreen = document.getElementById('download-screen');
 
-        // Mouse Takip Efekti
-        const glow = document.getElementById('glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-
-        // Sayfa Çevirme Fonksiyonu
-        function flipBook() {
-            const cover = document.getElementById('cover');
-            cover.classList.toggle('flipped');
-        }
-
-        // Mouse Wheel ile Sayfa Çevirme
-        window.addEventListener('wheel', (e) => {
-            const cover = document.getElementById('cover');
-            if (e.deltaY > 0) {
-                cover.classList.add('flipped');
+            // Kapak açılıyor
+            if (scrollPos > 100) {
+                frontCover.classList.add('flipped');
             } else {
-                cover.classList.remove('flipped');
+                frontCover.classList.remove('flipped');
+            }
+
+            // Sayfa 1 çevriliyor
+            if (scrollPos > 400) {
+                page1.classList.add('flipped');
+            } else {
+                page1.classList.remove('flipped');
+            }
+
+            // Sayfa 2 çevriliyor (Kitap kapanıyor)
+            if (scrollPos > 700) {
+                page2.classList.add('flipped');
+                downloadScreen.classList.add('show-download');
+                notebook.style.opacity = "0"; // Kitap tamamen kapandı/kayboldu hissi
+            } else {
+                page2.classList.remove('flipped');
+                downloadScreen.classList.remove('show-download');
+                notebook.style.opacity = "1";
             }
         });
+
+        // Butonlara basınca sayfa değiştirme simülasyonu
+        function goToPrivacy() {
+            window.scrollTo({ top: 800, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
