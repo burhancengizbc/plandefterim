@@ -3,68 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Defterim | Hayatını Organize Et</title>
+    <title>Plan Defterim | Kişisel Ajandan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .feature-card:hover { transform: translateY(-10px); transition: all 0.3s ease; }
+        body {
+            background-color: #e5e7eb;
+            background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .notebook-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1), -5px -5px 20px rgba(255,255,255,0.5);
+            display: flex;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Spiral Görünümü */
+        .spirals {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px 0;
+            z-index: 10;
+        }
+        .spiral-ring {
+            width: 30px;
+            height: 10px;
+            background: linear-gradient(to bottom, #9ca3af, #4b5563, #9ca3af);
+            border-radius: 5px;
+            margin-left: -15px;
+        }
+        .left-page {
+            width: 40%;
+            background-color: #f9fafb;
+            border-right: 2px solid #e5e7eb;
+            padding: 40px 40px 40px 60px;
+        }
+        .right-page {
+            width: 60%;
+            padding: 40px;
+            background-image: linear-gradient(#fff 23px, #e5e7eb 24px);
+            background-size: 100% 24px;
+            line-height: 24px;
+        }
+        .handwritten {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.5rem;
+            color: #2563eb;
+        }
+        .btn-download {
+            background: #1f2937;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .btn-download:hover {
+            transform: scale(1.05);
+            background: #000;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+<body class="p-4">
 
-    <header class="gradient-bg text-white">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold">Plan Defterim</div>
-            <div class="space-x-4">
-                <a href="#ozellikler" class="hover:text-gray-200">Özellikler</a>
-                <a href="https://burhancengizbc.github.io/plandefterim/gizlilik" class="bg-white text-purple-600 px-4 py-2 rounded-full font-bold shadow-lg">Gizlilik Politikası</a>
-            </div>
-        </nav>
-
-        <div class="container mx-auto px-6 py-24 text-center">
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Hayatını Planla, Hedeflerine Ulaş.</h1>
-            <p class="text-xl mb-8 opacity-90">Plan Defterim ile günlük işlerini takip et, alışkanlıklarını yönet ve üretkenliğini artır.</p>
-            <div class="flex justify-center space-x-4">
-                <button class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg shadow-2xl hover:bg-gray-100">Yakında Google Play'de</button>
-            </div>
+    <div class="notebook-container">
+        <div class="spirals">
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
         </div>
-    </header>
 
-    <section id="ozellikler" class="container mx-auto px-6 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Neden Plan Defterim?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="left-page flex flex-col justify-between">
+            <div>
+                <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Plan Defterim</h1>
+                <div class="w-16 h-1 bg-blue-500 mb-6"></div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Dijital dünyanın en samimi ajandası. Karmaşadan uzak, sadece hedeflerinize odaklı.
+                </p>
+            </div>
             
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-xl text-center">
-                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-calendar-check text-blue-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Günlük Planlama</h3>
-                <p class="text-gray-600">Günlük görevlerini kolayca ekle, önem sırasına göre diz ve hiçbir işi kaçırma.</p>
+            <div class="mb-10">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Çok Yakında</p>
+                <a href="#" class="btn-download text-sm font-bold shadow-lg">
+                    Google Play'den İndir
+                </a>
             </div>
-
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-xl text-center">
-                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-chart-line text-purple-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">İstatistik Takibi</h3>
-                <p class="text-gray-600">Haftalık ve aylık performansını grafiklerle izle, gelişimi kendi gözlerinle gör.</p>
-            </div>
-
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-xl text-center">
-                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-bell text-green-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Akıllı Hatırlatıcılar</h3>
-                <p class="text-gray-600">Önemli görevlerin için bildirimler al. Plan Defterim her zaman seni asiste eder.</p>
-            </div>
-
         </div>
-    </section>
 
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="mb-4">&copy; 2026 Plan Defterim. Tüm hakları saklıdır.</p>
-            <div class="flex justify-center space-x-6 text-2xl">
-                <a href="#" class="hover:text-purple-400"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-purple-4
+        <div class="right-page">
+            <h2 class="text-xl font-bold text-gray-700 mb-4 mt-2">Neler Yapabilirsin?</h2>
+            <ul class="handwritten space-y-1">
+                <li><span class="text-red-500 mr-2">✓</span> Günlük yapılacaklar listesi</li>
+                <li><span class="text-red-500 mr-2">✓</span> Alışkanlık takibi</li>
+                <li><span class="text-red-500 mr-2">✓</span> Hatırlatıcı notlar</li>
+                <li><span class="text-red-500 mr-2">✓</span> Haftalık verimlilik raporu</li>
+                <li><span class="text-red-500 mr-2">✓</span> Karanlık mod desteği</li>
+                <li><span class="text-red-500 mr-2">✓</span> PDF olarak çıktı alma</li>
+            </ul>
+            
+            <div class="mt-12 p-4 bg-yellow-50 border-l-4 border-yellow-400 shadow-sm">
+                <p class="text-sm text-yellow-700 italic">
+                    "Zamanını planla, hayatını yönet. Yarın değil, şimdi başla!"
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center text-gray-500 text-xs mt-8">
+        &copy; 2026 Plan Defterim | <a href="https://burhancengizbc.github.io/plandefterim/gizlilik" class="underline">Gizlilik Politikası</a>
+    </div>
+
+</body>
+</html>
