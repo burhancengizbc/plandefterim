@@ -23,7 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 400vh; /* Daha fazla sayfa için kaydırma alanı artırıldı */
+            min-height: 320vh; /* Daha akıcı geçiş için boyutu optimize ettim */
         }
 
         .notebook-wrapper {
@@ -128,13 +128,13 @@
         .btn-store:hover { transform: translateY(-5px); background: #222; }
 
         .contact-section {
-            margin-top: 150px; /* Daha aşağıda olması için artırıldı */
+            margin-top: 100px;
             padding-top: 30px;
         }
 
         .social-link {
             color: #d4af37;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin: 0 12px;
             transition: 0.3s;
             display: inline-block;
@@ -146,10 +146,11 @@
             color: #d4af37;
             text-decoration: none;
             font-family: 'EB Garamond', serif;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             display: block;
             margin-top: 20px;
             letter-spacing: 2px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -205,17 +206,17 @@
             <a href="#" class="btn-store"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="w-32"></a>
         </div>
         
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-12 text-gray-400 underline cursor-pointer">Yeniden Oku</button>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-8 text-gray-400 underline cursor-pointer">Yeniden Oku</button>
 
         <div class="contact-section">
-            <div class="flex justify-center flex-wrap gap-2">
+            <div class="flex justify-center flex-wrap gap-4">
                 <a href="mailto:cengizburhanbc@gmail.com" title="Mail At" class="social-link"><i class="fas fa-envelope"></i></a>
                 <a href="https://x.com/burhancengiz21" target="_blank" title="X (Twitter)" class="social-link"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
                 <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <a href="https://burhancengiz.com" target="_blank" class="mail-link font-bold">burhancengiz.com</a>
+            <a href="https://burhancengiz.com" target="_blank" class="mail-link">burhancengiz.com</a>
         </div>
     </div>
 
@@ -230,13 +231,13 @@
             const p4 = document.getElementById('page4');
             const downloadScreen = document.getElementById('download-screen');
 
-            // Akış kontrolü
-            if (scrollPos > 100) frontCover.classList.add('flipped'); else frontCover.classList.remove('flipped');
-            if (scrollPos > 600) p1.classList.add('flipped'); else p1.classList.remove('flipped');
-            if (scrollPos > 1100) p2.classList.add('flipped'); else p2.classList.remove('flipped');
-            if (scrollPos > 1600) p3.classList.add('flipped'); else p3.classList.remove('flipped');
+            // Tetikleyici aralıklarını hızlandırdım
+            if (scrollPos > 50) frontCover.classList.add('flipped'); else frontCover.classList.remove('flipped');
+            if (scrollPos > 300) p1.classList.add('flipped'); else p1.classList.remove('flipped');
+            if (scrollPos > 600) p2.classList.add('flipped'); else p2.classList.remove('flipped');
+            if (scrollPos > 900) p3.classList.add('flipped'); else p3.classList.remove('flipped');
             
-            if (scrollPos > 2100) {
+            if (scrollPos > 1200) {
                 p4.classList.add('flipped');
                 downloadScreen.classList.add('show-download');
                 notebook.style.opacity = "0";
