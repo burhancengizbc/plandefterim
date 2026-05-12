@@ -6,7 +6,7 @@
     <title>Plan Defterim | Hayatını Yaz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Indie+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --paper: #fdfbf7;
@@ -23,7 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 220vh; /* Daha seri geçişler için alanı optimize ettim */
+            min-height: 280vh; /* Geçişleri yumuşatmak için ideal yükseklik */
         }
 
         .notebook-wrapper {
@@ -40,7 +40,7 @@
             height: 600px;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1s, opacity 0.5s;
+            transition: transform 1.2s ease-in-out, opacity 0.8s ease;
         }
 
         .page {
@@ -50,7 +50,8 @@
             top: 0;
             left: 0;
             transform-origin: left;
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            /* Transition süresini 1.5s yaparak o patlama hissini giderdim */
+            transition: transform 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
             backface-visibility: hidden;
             border-radius: 4px 15px 15px 4px;
         }
@@ -96,22 +97,30 @@
             margin-top: 20px;
         }
 
-        .flipped { transform: rotateY(-175deg); z-index: 0 !important; }
+        /* Sayfa dönerken z-index çakışmasını önlemek için gecikmeli geçiş */
+        .flipped { 
+            transform: rotateY(-175deg); 
+            z-index: 0 !important;
+        }
         
         .download-screen {
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1s, transform 1s;
+            transition: opacity 1.2s ease, transform 1.2s ease;
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -40%);
+            transform: translate(-50%, -45%);
             text-align: center;
             z-index: 50;
             width: 100%;
         }
 
-        .show-download { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); }
+        .show-download { 
+            opacity: 1; 
+            pointer-events: auto; 
+            transform: translate(-50%, -50%); 
+        }
 
         .btn-store {
             background: #000;
@@ -128,15 +137,15 @@
         .btn-store:hover { transform: translateY(-5px); background: #222; }
 
         .contact-section {
-            margin-top: 80px;
+            margin-top: 60px;
             padding-top: 30px;
         }
 
         .social-link {
             color: #d4af37;
-            font-size: 2rem;
+            font-size: 2.2rem; /* İkonlar daha belirgin */
             margin: 0 15px;
-            transition: 0.3s;
+            transition: 0.3s ease;
             display: inline-block;
         }
 
@@ -150,8 +159,9 @@
             display: block;
             margin-top: 20px;
             letter-spacing: 2px;
-            font-weight: bold;
+            opacity: 0.8;
         }
+        .mail-link:hover { opacity: 1; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -211,12 +221,12 @@
         <div class="contact-section">
             <div class="flex justify-center flex-wrap gap-4">
                 <a href="mailto:cengizburhanbc@gmail.com" title="Mail At" class="social-link"><i class="fas fa-envelope"></i></a>
-                <a href="https://x.com/burhancengiz21" target="_blank" title="X (Twitter)" class="social-link"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/burhancengiz21" target="_blank" title="X (Twitter)" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
             </div>
-            <a href="https://burhancengiz.com" target="_blank" class="mail-link underline">burhancengiz.com</a>
+            <a href="https://burhancengiz.com" target="_blank" class="mail-link font-bold">burhancengiz.com</a>
         </div>
     </div>
 
@@ -225,24 +235,26 @@
             const scrollPos = window.scrollY;
             const notebook = document.getElementById('notebook');
             const frontCover = document.getElementById('front-cover');
-            const p1 = document.getElementById('page1');
-            const p2 = document.getElementById('page2');
-            const p3 = document.getElementById('page3');
-            const p4 = document.getElementById('page4');
+            const pages = [
+                document.getElementById('page1'),
+                document.getElementById('page2'),
+                document.getElementById('page3'),
+                document.getElementById('page4')
+            ];
             const downloadScreen = document.getElementById('download-screen');
 
-            // Tetikleyici noktaları çok daha sık aralıklara çektim
-            if (scrollPos > 30) frontCover.classList.add('flipped'); else frontCover.classList.remove('flipped');
-            if (scrollPos > 200) p1.classList.add('flipped'); else p1.classList.remove('flipped');
-            if (scrollPos > 400) p2.classList.add('flipped'); else p2.classList.remove('flipped');
-            if (scrollPos > 600) p3.classList.add('flipped'); else p3.classList.remove('flipped');
+            // Geçiş aralıklarını daha genişleterek "patlama" hissini yumuşattım
+            if (scrollPos > 100) frontCover.classList.add('flipped'); else frontCover.classList.remove('flipped');
+            if (scrollPos > 400) pages[0].classList.add('flipped'); else pages[0].classList.remove('flipped');
+            if (scrollPos > 700) pages[1].classList.add('flipped'); else pages[1].classList.remove('flipped');
+            if (scrollPos > 1000) pages[2].classList.add('flipped'); else pages[2].classList.remove('flipped');
             
-            if (scrollPos > 800) {
-                p4.classList.add('flipped');
+            if (scrollPos > 1300) {
+                pages[3].classList.add('flipped');
                 downloadScreen.classList.add('show-download');
                 notebook.style.opacity = "0";
             } else {
-                p4.classList.remove('flipped');
+                pages[3].classList.remove('flipped');
                 downloadScreen.classList.remove('show-download');
                 notebook.style.opacity = "1";
             }
