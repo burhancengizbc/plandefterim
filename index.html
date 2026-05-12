@@ -23,7 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 280vh; /* Geçişleri yumuşatmak için ideal yükseklik */
+            min-height: 300vh; 
         }
 
         .notebook-wrapper {
@@ -40,7 +40,7 @@
             height: 600px;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1.2s ease-in-out, opacity 0.8s ease;
+            transition: transform 1s, opacity 0.8s ease-in-out;
         }
 
         .page {
@@ -50,10 +50,10 @@
             top: 0;
             left: 0;
             transform-origin: left;
-            /* Transition süresini 1.5s yaparak o patlama hissini giderdim */
-            transition: transform 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
             backface-visibility: hidden;
             border-radius: 4px 15px 15px 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
 
         .cover {
@@ -65,7 +65,6 @@
             align-items: center;
             color: #d4af37;
             border: 2px solid #3d2422;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
         }
 
         .cover-border {
@@ -86,7 +85,7 @@
             padding: 50px;
             color: #2c1810;
             z-index: 1;
-            box-shadow: inset 5px 0 15px rgba(0,0,0,0.1);
+            box-shadow: inset 10px 0 20px rgba(0,0,0,0.05);
         }
 
         .handwriting {
@@ -97,7 +96,6 @@
             margin-top: 20px;
         }
 
-        /* Sayfa dönerken z-index çakışmasını önlemek için gecikmeli geçiş */
         .flipped { 
             transform: rotateY(-175deg); 
             z-index: 0 !important;
@@ -106,20 +104,21 @@
         .download-screen {
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -45%);
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             z-index: 50;
-            width: 100%;
+            padding: 20px;
         }
 
         .show-download { 
             opacity: 1; 
             pointer-events: auto; 
-            transform: translate(-50%, -50%); 
         }
 
         .btn-store {
@@ -134,16 +133,22 @@
             transition: 0.3s;
         }
 
-        .btn-store:hover { transform: translateY(-5px); background: #222; }
+        .btn-store:hover { transform: translateY(-5px); }
+
+        /* İkonları en alta iten ve arayı açan bölüm */
+        .bottom-container {
+            margin-top: auto; /* İçeriği yukarıdan aşağıya iter */
+            padding-bottom: 40px;
+            width: 100%;
+        }
 
         .contact-section {
-            margin-top: 60px;
-            padding-top: 30px;
+            margin-top: 100px; /* Yeniden Oku butonu ile arayı açar */
         }
 
         .social-link {
             color: #d4af37;
-            font-size: 2.2rem; /* İkonlar daha belirgin */
+            font-size: 2.2rem;
             margin: 0 15px;
             transition: 0.3s ease;
             display: inline-block;
@@ -151,54 +156,49 @@
 
         .social-link:hover { color: #ffffff; transform: translateY(-5px); }
 
-        .mail-link {
+        .web-link {
             color: #d4af37;
             text-decoration: none;
             font-family: 'EB Garamond', serif;
             font-size: 1.5rem;
             display: block;
-            margin-top: 20px;
+            margin-top: 25px;
             letter-spacing: 2px;
+            font-weight: bold;
             opacity: 0.8;
         }
-        .mail-link:hover { opacity: 1; text-decoration: underline; }
+        .web-link:hover { opacity: 1; text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <div class="notebook-wrapper">
         <div class="notebook" id="notebook">
-            
             <div class="page cover" style="transform: rotateY(0deg); z-index: 0;"></div>
-
             <div class="page inner-page" id="page4" style="z-index: 1;">
                 <h2 class="text-3xl font-bold mb-6">Sonsöz_</h2>
                 <div class="handwriting">
                     <p>4. Plan Defterim'i Kullan:<br>Bu sadece bir yazılım değil; senin sadık sırdaşın, kişisel asistanın ve başarı yolundaki pusulan. Kağıdın samimiyeti, dijitalin gücüyle buluştu.</p>
                 </div>
             </div>
-
             <div class="page inner-page" id="page3" style="z-index: 2;">
                 <h2 class="text-3xl font-bold mb-6">Odak_</h2>
                 <div class="handwriting">
                     <p>3. Hedeflerine Odaklan:<br>Gürültüyü sustur. Zihnindeki karmaşayı bir kenara bırak ve seni gerçekten heyecanlandıran o tek şeye odaklan. Başarı, dikkatin disiplinidir.</p>
                 </div>
             </div>
-
             <div class="page inner-page" id="page2" style="z-index: 3;">
                 <h2 class="text-3xl font-bold mb-6">Düzen_</h2>
                 <div class="handwriting">
                     <p>2. Kaosu Düzene Sok:<br>Hayat karmaşıktır ama kontrol edilebilir. Dağınık düşünceleri satırlara dök, önceliklerini belirle. Düzenin olduğu yerde huzur, huzurun olduğu yerde verim vardır.</p>
                 </div>
             </div>
-
             <div class="page inner-page" id="page1" style="z-index: 4;">
                 <h2 class="text-3xl font-bold mb-6">Gelecek_</h2>
                 <div class="handwriting">
                     <p>1. Geleceği Planla:<br>Zaman akıp giderken dümende sen ol. Yarınını bugünden hayal et, adımlarını bugünden belirle. Unutma; planlanmamış bir gelecek, başkalarının rüyasıdır.</p>
                 </div>
             </div>
-
             <div class="page cover" id="front-cover" style="z-index: 5;">
                 <div class="cover-border">
                     <h3 class="text-xl mb-4 italic">Kişisel Ajandanız</h3>
@@ -210,23 +210,26 @@
     </div>
 
     <div class="download-screen" id="download-screen">
-        <h2 class="text-white text-4xl font-bold mb-8">Defterini Cebine Al</h2>
-        <div class="flex flex-col md:flex-row justify-center items-center">
-            <a href="#" class="btn-store"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" class="w-32"></a>
-            <a href="#" class="btn-store"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="w-32"></a>
-        </div>
-        
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-8 text-gray-400 underline cursor-pointer">Yeniden Oku</button>
-
-        <div class="contact-section">
-            <div class="flex justify-center flex-wrap gap-4">
-                <a href="mailto:cengizburhanbc@gmail.com" title="Mail At" class="social-link"><i class="fas fa-envelope"></i></a>
-                <a href="https://x.com/burhancengiz21" target="_blank" title="X (Twitter)" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+        <div class="flex-grow flex flex-col justify-center">
+            <h2 class="text-white text-4xl font-bold mb-8">Defterini Cebine Al</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <a href="#" class="btn-store"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" class="w-32"></a>
+                <a href="#" class="btn-store"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="w-32"></a>
             </div>
-            <a href="https://burhancengiz.com" target="_blank" class="mail-link font-bold">burhancengiz.com</a>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-12 text-gray-400 underline cursor-pointer hover:text-white transition-colors">Yeniden Oku</button>
+        </div>
+
+        <div class="bottom-container">
+            <div class="contact-section">
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="mailto:cengizburhanbc@gmail.com" title="Mail At" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <a href="https://x.com/burhancengiz21" target="_blank" title="X (Twitter)" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://instagram.com/burhancengizbc" target="_blank" title="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com/burhancengizbc" target="_blank" title="Facebook" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com/@burhancengizbc" target="_blank" title="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <a href="https://burhancengiz.com" target="_blank" class="web-link">burhancengiz.com</a>
+            </div>
         </div>
     </div>
 
@@ -243,13 +246,13 @@
             ];
             const downloadScreen = document.getElementById('download-screen');
 
-            // Geçiş aralıklarını daha genişleterek "patlama" hissini yumuşattım
+            // Yumuşak geçiş tetikleyicileri
             if (scrollPos > 100) frontCover.classList.add('flipped'); else frontCover.classList.remove('flipped');
-            if (scrollPos > 400) pages[0].classList.add('flipped'); else pages[0].classList.remove('flipped');
-            if (scrollPos > 700) pages[1].classList.add('flipped'); else pages[1].classList.remove('flipped');
-            if (scrollPos > 1000) pages[2].classList.add('flipped'); else pages[2].classList.remove('flipped');
+            if (scrollPos > 500) pages[0].classList.add('flipped'); else pages[0].classList.remove('flipped');
+            if (scrollPos > 900) pages[1].classList.add('flipped'); else pages[1].classList.remove('flipped');
+            if (scrollPos > 1300) pages[2].classList.add('flipped'); else pages[2].classList.remove('flipped');
             
-            if (scrollPos > 1300) {
+            if (scrollPos > 1700) {
                 pages[3].classList.add('flipped');
                 downloadScreen.classList.add('show-download');
                 notebook.style.opacity = "0";
